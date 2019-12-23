@@ -6,20 +6,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판</title>
 <style type="text/css">
-
+	.pointer {
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
 	<div id="container">
 		<div>
-			<a href="write"><button>글쓰기</button></a>
+			<a href="write.do"><button>글쓰기</button></a>
 		</div>
 		<div>
-			-- 리스트
+			<table>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>조회수</th>
+					<th>작성일</th>					
+				</tr>
+				<c:forEach var="item" items="${list}">
+					<tr onclick="moveToDetail(${item.i_board })" class="pointer">
+						<td>${item.i_board }</td>
+						<td>${item.title }</td>
+						<td>${item.cnt }</td>
+						<td>${item.r_dt }</td>
+					</tr>
+				</c:forEach>
+			</table>
 		</div>
 		<div>
 			-- 페이징
 		</div>
 	</div>
+	<script>
+		function moveToDetail(i_board) {
+			location.href = 'detail?i_board=' + i_board
+		}
+	
+	</script>
 </body>
 </html>

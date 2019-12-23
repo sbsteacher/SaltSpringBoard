@@ -9,12 +9,29 @@
 </head>
 <body>
 	<div>
-		<form action="write" method="post" id="frm">
+		<form action="write.do" method="post" id="frm" onsubmit="return chk()">
 			<div>제목 : <input type="text" name="title"></div>
 			<div>내용 
-				<textarea rows="60" cols="40" name="ct"></textarea>
+				<textarea rows="30" cols="50" name="ct"></textarea>
+			</div>
+			<div>
+				<input type="submit" value="등록">
+				<input type="reset" value="다시쓰기">
 			</div>
 		</form>
 	</div>
+	<script>
+		function chk() {
+			if( frm.title.value == '') {
+				alert('제목이 없네유')
+				frm.title.focus()
+				return false
+			} else if (frm.ct.value == '') {
+				alert('내용이 없네유')
+				frm.ct.focus()
+				return false
+			}
+		}
+	</script>
 </body>
 </html>

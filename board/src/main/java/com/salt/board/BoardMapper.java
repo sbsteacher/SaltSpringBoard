@@ -1,5 +1,8 @@
 package com.salt.board;
 
-public interface BoardMapper {
+import java.util.List;
 
+public interface BoardMapper {
+	int insertBoard(BoardVO p);
+	List<BoardVO> getBoardList();
 }
