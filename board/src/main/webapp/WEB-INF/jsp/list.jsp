@@ -40,7 +40,7 @@
 	</div>
 	<script>
 		function moveToDetail(i_board) {
-			location.href = 'detail?i_board=' + i_board
+			location.href = 'detail.do?i_board=' + i_board
 		}
 	
 	</script>

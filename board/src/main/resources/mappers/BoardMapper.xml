@@ -21,6 +21,13 @@
 	    ORDER BY i_board DESC
 	</select>
 	
+	<select id="getBoardDetail" resultType="BoardVO" parameterType="BoardVO">
+	    SELECT 
+	    	i_board, title, ct, cnt, to_char(r_dt, 'yyyy-mm-dd') as r_dt
+	    FROM t_board 
+	    WHERE i_board = #{i_board}
+	</select>
+	
 	<!--  UPDATE -->
 	
 	<!--  DELETE -->

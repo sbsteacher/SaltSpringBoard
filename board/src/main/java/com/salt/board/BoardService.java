@@ -18,4 +18,8 @@ public class BoardService {
 	public List<BoardVO> getBoardList() {
 		return mapper.getBoardList();
 	}
+	
+	public BoardVO getBoardDetail(BoardVO param) {
+		return mapper.getBoardDetail(param);
+	}
 }
