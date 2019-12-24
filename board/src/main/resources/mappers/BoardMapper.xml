@@ -7,9 +7,9 @@
             SELECT seq_board.nextval FROM dual
         </selectKey>
         INSERT INTO t_board
-        (i_board, title, ct)
+        (i_board, title, ct, ipaddr)
         VALUES
-        (#{i_board}, #{title}, #{ct})        
+        (#{i_board}, #{title}, #{ct}, #{ipaddr})        
     </insert>
     
 	
@@ -29,6 +29,13 @@
 	</select>
 	
 	<!--  UPDATE -->
+	<update id="updViewCnt" parameterType="BoardVO">
+	    UPDATE t_board
+	    SET cnt = cnt + 1
+	    	, ipaddr = #{ipaddr}
+	    WHERE i_board = #{i_board}
+	    AND ipaddr != #{ipaddr}
+	</update>
 	
 	<!--  DELETE -->
     

@@ -8,6 +8,7 @@
 <title>글보기</title>
 </head>
 <body>
+	<div><a href="list.do"><button>리스트로 돌아가기</button></a></div>
 	<div>		
 		<div>제목 : ${detail.title }</div>
 		<div>조회수 : ${detail.cnt } / 등록일 : ${detail.r_dt }</div>

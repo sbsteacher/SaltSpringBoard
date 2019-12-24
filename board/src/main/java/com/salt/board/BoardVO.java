@@ -7,7 +7,14 @@ public class BoardVO {
 	private int cnt;
 	private String r_dt;
 	private String m_dt;
-	
+	private String ipaddr;
+		
+	public String getIpaddr() {
+		return ipaddr;
+	}
+	public void setIpaddr(String ipaddr) {
+		this.ipaddr = ipaddr;
+	}
 	public int getI_board() {
 		return i_board;
 	}
