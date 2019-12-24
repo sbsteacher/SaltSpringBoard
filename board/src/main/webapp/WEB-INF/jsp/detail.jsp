@@ -14,11 +14,17 @@
 		<div>조회수 : ${detail.cnt } / 등록일 : ${detail.r_dt }</div>
 		<div>내용</div>
 		<div>${detail.ct }</div>
-		<div><button>수정</button><button onclick="confirmDel()">삭제</button></div>
+		<div><button onclick="confirmMod()">수정</button><button onclick="confirmDel()">삭제</button></div>
 	</div>
 	<script>
 		function confirmDel() {
+			if(confirm('삭제하시겠습니까')) {
+				location.href="delBoard.do?i_board=" + ${detail.i_board}
+			}
 			
+		}
+		function confirmMod(){
+			location.href="write.do?i_board=" + ${detail.i_board}
 		}
 	</script>
 </body>

@@ -44,4 +44,12 @@ public class BoardService {
 		mapper.updViewCnt(param);
 		return mapper.getBoardDetail(param);
 	}
+	
+	public void delBoard(int i_board) {
+		mapper.delBoard(i_board);
+	}
+	
+	public void modBoard(BoardVO param) {
+		mapper.modBoard(param);
+	}
 }

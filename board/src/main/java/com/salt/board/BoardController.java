@@ -20,19 +20,31 @@ public class BoardController {
 	}
 	
 	@RequestMapping("write.do")
-	public String write() {
+	public String write(@RequestParam(defaultValue="0") int i_board, Model model) {
+		if(i_board != 0) {
+			BoardVO param = new BoardVO();
+			param.setI_board(i_board);
+			model.addAttribute("detail", service.getBoardDetail(param));
+		}
 		return "write";
 	}
 	
 	@RequestMapping(value="write.do", method=RequestMethod.POST)
 	public String writePost(BoardVO param) {
-		int result = param.getI_board();
-		System.out.println("before result : " + result);
-		int result2 = service.insertBoard(param);
-		result = param.getI_board();		
-		System.out.println("after result : " + result);
-		System.out.println("result2 : " + result2);
-		return "write";
+		if(param.getI_board() == 0) {
+			int result = param.getI_board();
+			System.out.println("before result : " + result);
+			int result2 = service.insertBoard(param);
+			result = param.getI_board();		
+			System.out.println("after result : " + result);
+			System.out.println("result2 : " + result2);
+			
+			return "redirect: list.do";
+		}else {
+			service.modBoard(param);
+			return "redirect: detail.do?i_board="+param.getI_board();
+		}
+		
 	}
 	
 	@RequestMapping("detail.do")
@@ -41,5 +53,11 @@ public class BoardController {
 		param.setI_board(i_board);
 		model.addAttribute("detail", service.getBoardDetail(param));
 		return "detail";
+	}
+	
+	@RequestMapping("delBoard.do")
+	public String delBoard(@RequestParam int i_board) {
+		service.delBoard(i_board);
+		return "redirect:list.do";
 	}
 }

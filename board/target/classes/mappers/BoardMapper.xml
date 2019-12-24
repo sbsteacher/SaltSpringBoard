@@ -36,8 +36,17 @@
 	    WHERE i_board = #{i_board}
 	    AND ipaddr != #{ipaddr}
 	</update>
+	<update id="modBoard" parameterType="BoardVO">
+	    UPDATE t_board
+	    SET title = #{title}
+	    		,ct = #{ct}
+	    		,m_dt = sysdate
+	    WHERE i_board = #{i_board}
+	</update>
 	
 	<!--  DELETE -->
-    
+    <delete id="delBoard" parameterType="int">
+        DELETE FROM t_board WHERE i_board = #{i}
+    </delete>
     
 </mapper>

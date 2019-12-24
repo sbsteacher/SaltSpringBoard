@@ -7,4 +7,6 @@ public interface BoardMapper {
 	List<BoardVO> getBoardList();
 	BoardVO getBoardDetail(BoardVO p);
 	int updViewCnt(BoardVO p);
+	void delBoard(int p);
+	void modBoard(BoardVO p);
 }
