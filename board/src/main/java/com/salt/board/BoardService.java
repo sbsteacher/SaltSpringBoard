@@ -26,8 +26,15 @@ public class BoardService {
 		return mapper.insertBoard(param);
 	}
 	
-	public List<BoardVO> getBoardList() {
-		return mapper.getBoardList();
+	//보드 리스트 
+	public List<BoardVO> getBoardList(SelectVO param) {
+		int eidx = FinalObj.SHOW_CNT * param.getPage();
+		int sidx = eidx - param.getPage();
+		
+		param.setSidx(sidx);
+		param.setEidx(eidx);
+		
+		return mapper.getBoardList(param);
 	}
 	
 	public BoardVO getBoardDetail(BoardVO param) {

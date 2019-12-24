@@ -14,11 +14,16 @@
     
 	
 	<!--  SELECT -->
-	<select id="getBoardList" resultType="BoardVO">
-	    SELECT 
-	    	i_board, title, cnt, to_char(r_dt, 'yyyy-mm-dd') as r_dt
-	    FROM t_board 
-	    ORDER BY i_board DESC
+	<select id="getBoardList" resultType="BoardVO" parameterType="SelectVO">
+	    select * from (
+		    select rownum as rnum, Z.*
+		    FROM (
+		        SELECT 
+		        	i_board, title, cnt, to_char(r_dt, 'yyyy-mm-dd') as r_dt
+		        FROM t_board
+		        ORDER BY i_board DESC
+		    ) Z WHERE rownum  <![CDATA <= ]]> #{eidx}    
+		) WHERE rnum <![CDATA > ]]> #{sidx}
 	</select>
 	
 	<select id="getBoardDetail" resultType="BoardVO" parameterType="BoardVO">

@@ -14,8 +14,10 @@ public class BoardController {
 	BoardService service;
 	
 	@RequestMapping("list.do")
-	public String list(Model model) {		
-		model.addAttribute("list", service.getBoardList());
+	public String list(Model model, @RequestParam(defaultValue="1") int page) {
+		SelectVO param = new SelectVO();
+		param.setPage(page);
+		model.addAttribute("list", service.getBoardList(param));
 		return "list";
 	}
 	

@@ -4,5 +4,6 @@
 <configuration>
 	<typeAliases>
   		<typeAlias alias="BoardVO" type="com.salt.board.BoardVO" />
+  		<typeAlias alias="SelectVO" type="com.salt.board.SelectVO" />
   	</typeAliases>	
 </configuration>     
