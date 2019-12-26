@@ -29,10 +29,13 @@ public class BoardService {
 	//보드 리스트 
 	public List<BoardVO> getBoardList(SelectVO param) {
 		int eidx = FinalObj.SHOW_CNT * param.getPage();
-		int sidx = eidx - param.getPage();
+		int sidx = eidx - FinalObj.SHOW_CNT;
 		
 		param.setSidx(sidx);
 		param.setEidx(eidx);
+		
+		System.out.println("sidx : " + sidx);
+		System.out.println("eidx : " + eidx);
 		
 		return mapper.getBoardList(param);
 	}
@@ -50,6 +53,11 @@ public class BoardService {
 		
 		mapper.updViewCnt(param);
 		return mapper.getBoardDetail(param);
+	}
+	
+	public int getTotalPageCnt() {
+		return mapper.getTotalPageCnt(FinalObj.SHOW_CNT);
+				
 	}
 	
 	public void delBoard(int i_board) {

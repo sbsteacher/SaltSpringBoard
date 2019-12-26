@@ -15,6 +15,10 @@ public class BoardController {
 	
 	@RequestMapping("list.do")
 	public String list(Model model, @RequestParam(defaultValue="1") int page) {
+		int totalPageCnt = service.getTotalPageCnt();
+		System.out.println("totalPageCnt : " + totalPageCnt);
+		model.addAttribute("totalPageCnt", totalPageCnt);
+		model.addAttribute("page", page);
 		SelectVO param = new SelectVO();
 		param.setPage(page);
 		model.addAttribute("list", service.getBoardList(param));

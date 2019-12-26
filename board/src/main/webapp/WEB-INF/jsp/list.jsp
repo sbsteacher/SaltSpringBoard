@@ -9,6 +9,15 @@
 	.pointer {
 		cursor: pointer;
 	}
+	
+	a {
+		color: black;		
+	}
+	
+	.aSelected {
+		color: red;
+		font-weigth: bold;
+	}
 </style>
 </head>
 <body>
@@ -35,7 +44,10 @@
 			</table>
 		</div>
 		<div>
-			-- 페이징
+			<c:forEach var="item" begin="1" end="${totalPageCnt}">
+				<a href="list.do?page=${item}" 
+				class="${item == page ? 'aSelected' : ''}">${item}</a>
+			</c:forEach>
 		</div>
 	</div>
 	<script>
