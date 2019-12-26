@@ -8,6 +8,7 @@
 <title>글쓰기</title>
 </head>
 <body>
+	<div><a href="list.do"><button>리스트로 돌아가기</button></a></div>
 	<div>
 		<form action="write.do" method="post" id="frm" onsubmit="return chk()">
 			<div>

@@ -1,5 +1,7 @@
 package com.salt.board;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +15,44 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 	
+	@Autowired
+	HttpSession hs;
+	
 	@RequestMapping("list.do")
-	public String list(Model model, @RequestParam(defaultValue="1") int page) {
-		int totalPageCnt = service.getTotalPageCnt();
-		System.out.println("totalPageCnt : " + totalPageCnt);
-		model.addAttribute("totalPageCnt", totalPageCnt);
-		model.addAttribute("page", page);
-		SelectVO param = new SelectVO();
+	public String list(Model model, @RequestParam(defaultValue="0") int page
+			, SelectVO param) {
+		if(page == 0) {
+			Integer sessionPage = (Integer)hs.getAttribute("page");
+			if(sessionPage == null) {
+				page = 1;
+			} else {
+				page = sessionPage;
+			}
+		}
+		String searchText = null;
+		if(param.getSearchText() == null) {
+			searchText = (String)hs.getAttribute("searchText");
+			if(searchText == null) {
+				searchText = param.getSearchText();	
+			}
+		} else {
+			searchText = param.getSearchText();
+		}
+			
+		System.out.println("searchText : " + searchText);
+		param.setSearchText(searchText);
+		hs.setAttribute("searchText", searchText);
+		
+		int totalPageCnt = service.getTotalPageCnt(param);
+		if(totalPageCnt < page) {
+			page = totalPageCnt;
+		}
+		
+		hs.setAttribute("page", page);
 		param.setPage(page);
+		
+		System.out.println("totalPageCnt : " + totalPageCnt);
+		model.addAttribute("totalPageCnt", totalPageCnt);		
 		model.addAttribute("list", service.getBoardList(param));
 		return "list";
 	}

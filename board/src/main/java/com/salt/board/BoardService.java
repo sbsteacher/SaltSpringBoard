@@ -55,8 +55,9 @@ public class BoardService {
 		return mapper.getBoardDetail(param);
 	}
 	
-	public int getTotalPageCnt() {
-		return mapper.getTotalPageCnt(FinalObj.SHOW_CNT);
+	public int getTotalPageCnt(SelectVO param) {
+		param.setShowCnt(FinalObj.SHOW_CNT);
+		return mapper.getTotalPageCnt(param);
 				
 	}
 	

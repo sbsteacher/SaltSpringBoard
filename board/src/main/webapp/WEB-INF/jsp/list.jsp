@@ -49,12 +49,19 @@
 				class="${item == page ? 'aSelected' : ''}">${item}</a>
 			</c:forEach>
 		</div>
+		<div>
+			<form action="list.do" method="get">
+				<div>
+					<input type="search" name="searchText" value="${searchText }">
+					<input type="submit" value="검색">
+				</div>
+			</form>
+		</div>
 	</div>
 	<script>
 		function moveToDetail(i_board) {
 			location.href = 'detail.do?i_board=' + i_board
 		}
-	
 	</script>
 </body>
 </html>

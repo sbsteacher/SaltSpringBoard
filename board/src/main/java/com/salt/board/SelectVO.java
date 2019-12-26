@@ -4,7 +4,25 @@ public class SelectVO {
 	private int page;
 	private int sidx;
 	private int eidx;
-	
+	private int showCnt;
+	private String searchText;
+		
+	public int getShowCnt() {
+		return showCnt;
+	}
+
+	public void setShowCnt(int showCnt) {
+		this.showCnt = showCnt;
+	}
+
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+
 	public int getSidx() {
 		return sidx;
 	}

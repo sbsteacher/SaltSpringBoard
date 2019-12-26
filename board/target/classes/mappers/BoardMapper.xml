@@ -21,6 +21,9 @@
 		        SELECT 
 		        	i_board, title, cnt, to_char(r_dt, 'yyyy-mm-dd') as r_dt
 		        FROM t_board
+		        <if test="searchText != null and searchText !=''">
+		        	WHERE title like '%${searchText}%'
+		        </if>
 		        ORDER BY i_board DESC
 		    ) Z WHERE rownum  <![CDATA[ <= ]]> #{eidx}    
 		) WHERE rnum <![CDATA[ > ]]> #{sidx}
@@ -33,8 +36,13 @@
 	    WHERE i_board = #{i_board}
 	</select>
 	
-	<select id="getTotalPageCnt" resultType="int" parameterType="int">
-	    SELECT ceil(count(i_board) / #{i}) FROM t_board 
+	<select id="getTotalPageCnt" resultType="int" parameterType="SelectVO">
+	    SELECT 
+	    	ceil(count(i_board) / #{showCnt}) 
+	    FROM t_board 
+	    <if test="searchText != null and searchText !=''">
+	    	WHERE title like '%${searchText}%'
+	    </if>
 	</select>
 	
 	<!--  UPDATE -->
